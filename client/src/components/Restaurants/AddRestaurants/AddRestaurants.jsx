@@ -4,7 +4,8 @@ import RestuarantForm from './RestuarantForm/RestaurantForm';
 
 import './style.css'
 
-export const AddRestaurants = () => {
+
+export const AddRestaurants = (generateRestaurant) => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -17,7 +18,7 @@ export const AddRestaurants = () => {
                     <Modal.Title>Create Restaurant</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                        <RestuarantForm handleClose={handleClose}/>
+                        <RestuarantForm handleClose={handleClose} generateRestaurant={generateRestaurant}/>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>Close</Button>

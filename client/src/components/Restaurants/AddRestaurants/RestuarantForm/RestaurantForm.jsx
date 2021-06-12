@@ -52,6 +52,7 @@ class RestuarantForm extends React.Component {
         e.preventDefault();
 
         if (this.handleValidation()) {
+            this.props.generateRestaurant(this.state.feild.name, this.state.feild.cuisine, this.state.feild.menu)
             this.props.handleClose();
         } else {
             alert("Form has errors.")

@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Button, Modal} from 'react-bootstrap';
 
 import './style.css'
-const Menu = () => {
+const Menu = (restMenu) => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -15,7 +15,13 @@ const Menu = () => {
                     <Modal.Title>Menu</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                        
+                        <ol>
+                            <li>Item</li>
+                            <li>Item</li>
+                            <li>Item</li>
+                            <li>Item</li>
+                            <li>Item</li>
+                        </ol>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>Close</Button>
