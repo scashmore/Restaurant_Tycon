@@ -1,23 +1,21 @@
-import React, {useState} from 'react';
+import React, {useState} from 'react'
 import { Button, Modal} from 'react-bootstrap';
-import RestuarantForm from './RestuarantForm/RestaurantForm';
 
 import './style.css'
-
-export const AddRestaurants = () => {
+const Menu = () => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     return (
-        <div className="add">
-            <Button className="addBtn" variant="outline-info" size="lg" onClick={handleShow}>Add Restaurant</Button>
+        <div className="menu">
+            <Button className="menuBtn" variant="outline-info" size="sm" onClick={handleShow}>Menu</Button>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Create Restaurant</Modal.Title>
+                    <Modal.Title>Menu</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                        <RestuarantForm handleClose={handleClose}/>
+                        
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>Close</Button>
@@ -27,4 +25,4 @@ export const AddRestaurants = () => {
     )
 }
 
-export default AddRestaurants
+export default Menu
