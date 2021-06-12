@@ -5,7 +5,7 @@ import RestuarantForm from './RestuarantForm/RestaurantForm';
 import './style.css'
 
 
-export const AddRestaurants = (generateRestaurant) => {
+export const AddRestaurants = ({generateRestaurant}) => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
