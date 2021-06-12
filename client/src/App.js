@@ -1,11 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import Restaurant from './components/Restaurants/Restaurants'
+import Restaurants from './components/Restaurants/Restaurants'
 
 function App() {
   return (
     <div>
-      <Restaurant />
+      <Restaurants />
     </div>
   );
 }
