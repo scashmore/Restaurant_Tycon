@@ -10,8 +10,14 @@ const Restaurants = () => {
     const [menuItems, setMenuItems] = useState([]);
     const [ingreItems, setIngreItems] = useState([]);
 
-    const generateIngres = (name, id) => {
-        
+    let newIngres = [];
+
+        const generateIngres = (number) => {
+            
+            for (var i = 0; i < parseInt(number); i++) {
+                newIngres.push(`ingredient` + `${i+1}`)
+            }
+            setIngreItems(ingreItems.push(newIngres));
     }
 
     let newMenu = [];
@@ -68,7 +74,7 @@ const Restaurants = () => {
                         <Card.Text>
                             {`${restaurants.restName} serves ${restaurants.restCuisine} cuisine and has ${restaurants.restMenuNum} menu items.`}
                         </Card.Text>
-                       <Menu restMenu={restaurants.restMenu} menuItems={menuItems} deleteMenuItem={deleteMenuItem}/>
+                       <Menu generateIngres={generateIngres} restMenu={restaurants.restMenu} menuItems={menuItems} deleteMenuItem={deleteMenuItem}/>
                     </Card.Body>
                 </Card>
                 ))}

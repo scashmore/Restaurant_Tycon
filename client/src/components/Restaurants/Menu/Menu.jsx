@@ -5,7 +5,7 @@ import IngredientsForm from './Ingredients/IngredientsForm/IngredientsForm'
 import MenuEdit from './MenuEdit/MenuEdit'
 
 import './style.css'
-const Menu = ({ restMenu, menuItems, deleteMenuItem, ingreItems }) => {
+const Menu = ({ restMenu, menuItems, deleteMenuItem, ingreItems, generateIngres }) => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -35,7 +35,7 @@ const Menu = ({ restMenu, menuItems, deleteMenuItem, ingreItems }) => {
                                     <Modal.Title>Add Ingredients</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
-                                    <IngredientsForm handleClose={handleClose}/>
+                                    <IngredientsForm generateIngres={generateIngres} handleClose={handleClose}/>
                                 </Modal.Body>
                                 <Modal.Footer>
                                  <Button variant="secondary" onClick={handleClose}>Close</Button>

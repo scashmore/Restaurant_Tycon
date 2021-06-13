@@ -30,7 +30,7 @@ class IngredientsForm extends React.Component {
         e.preventDefault();
 
         if (this.handleValidation()) {
-            
+            this.props.generateIngres(this.state.fields.itemNum)
             this.props.handleClose();
         } else {
             alert("Form has errors.")
