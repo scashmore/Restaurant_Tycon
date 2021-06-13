@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap';
 
 import './style.css'
-const Menu = (newMenu) => {
+const Menu = ({newMenu}) => {
     const [show, setShow] = useState(false);
-    const [menuItems, setMenuItems] = useState(newMenu);
+    const [menuItems, setMenuItems] = useState([]);
+
+    setMenuItems(newMenu);
    
 
 
