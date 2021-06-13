@@ -5,6 +5,12 @@ import './style.css'
 const Menu = (restMenu) => {
     const [show, setShow] = useState(false);
     const [menuItems, setMenuItems] = useState(restMenu);
+    const menu = [];
+    
+
+    for(i=0; i<menuItems; i++) {
+    menu.push({item: 'item', description: 'about item'})
+    };
 
    
 
@@ -16,11 +22,11 @@ const Menu = (restMenu) => {
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Menu</Modal.Title>
-                </Modal.Header>
+                </Modal.Header>s
                 <Modal.Body>
                     <ul>
-                        {menuItems.map((index) => {
-                            return <li key={index}></li>
+                        {menu.map((index) => {
+                            return <li key={index}>{menu.item}</li>
                         })}
                     </ul>
                 </Modal.Body>
