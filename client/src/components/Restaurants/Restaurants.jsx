@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Card, Button} from 'react-bootstrap';
 import AddRestaurants from './AddRestaurants/AddRestaurants'
-import RestuarantForm from './AddRestaurants/RestuarantForm/RestaurantForm';
 import Menu from './Menu/Menu'
 import './style.css'
 
@@ -16,7 +15,7 @@ const Restaurants = () => {
         
 
         for (var i = 0; i < parseInt(menu); i++) {
-            newMenu.push({ item: `'item` + `${i+1}'`, description: 'about item' });
+            newMenu.push({ item: `item` + `${i+1}`, description: 'about item' });
         };
         console.log(newMenu);
         setMenuItems(newMenu);

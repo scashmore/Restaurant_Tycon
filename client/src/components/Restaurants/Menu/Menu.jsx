@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Card, Modal } from 'react-bootstrap';
+import MenuEdit from './MenuEdit/MenuEdit'
 
 import './style.css'
 const Menu = ({ restMenu, deleteMenuItem }) => {
@@ -21,7 +22,7 @@ const Menu = ({ restMenu, deleteMenuItem }) => {
                             return <li key={index}>
                                 <h6 className='item'>
                                     {restMenu.item}
-                                    <Button variant="link">✎</Button>
+                                    <p><MenuEdit /></p>
                                     <Button variant="link" onClick={() => deleteMenuItem(restMenu.item)}>❌</Button>
                                 </h6>
                                 <p>
