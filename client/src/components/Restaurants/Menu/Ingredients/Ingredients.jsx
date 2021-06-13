@@ -1,6 +1,6 @@
 import React from 'react';
-import {Modal} from 'react-bootstrap';
-// import Modal from 'react-overlays/Modal';
+import {Modal, Button} from 'react-bootstrap';
+//import Modal from 'react-overlays/Modal';
 
 const Ingredients = (ingreItems) => {
     const [show, setShow] = useState(false);
