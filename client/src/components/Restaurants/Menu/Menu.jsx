@@ -18,11 +18,11 @@ const Menu = ({ restMenu, deleteMenuItem }) => {
             <Card className="menuCard">
                 <Card.Title className="menuTitle">Menu</Card.Title>
                     <ul>
-                        {restMenu.map((restMenu, index) => {
-                            return <li key={index}>
+                        {restMenu.map((restMenu) => {
+                            return <li key={restMenu.idx}>
                                 <h6 className='item'>
                                     {restMenu.item}
-                                    <p><MenuEdit menuItem={restMenu.item} menuDescrip={restMenu.description}/></p>
+                                    <MenuEdit menuItem={restMenu.item} menuDescrip={restMenu.description}/>
                                     <Button variant="link" onClick={() => deleteMenuItem(restMenu.item)}>❌</Button>
                                 </h6>
                                 <p>

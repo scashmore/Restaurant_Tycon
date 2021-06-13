@@ -16,7 +16,7 @@ const Restaurants = () => {
         
 
         for (var i = 0; i < parseInt(menu); i++) {
-            newMenu.push({ item: `item` + `${i+1}`, description: 'about item' });
+            newMenu.push({ item: `item` + `${i+1}`, description: 'about item', idx: `${Date.now()+i}` });
         };
         console.log(newMenu);
         setMenuItems(newMenu);
@@ -34,8 +34,9 @@ const Restaurants = () => {
     }
 
     const updateRestaurant = (restId) => {
-
+        
     };
+
 
     const deleteRestaurant = (restId) => {
         const newList = restaurants.filter((restaurants) => restaurants.restId !== restId);
@@ -57,7 +58,7 @@ const Restaurants = () => {
                         <Card.Title className="title">
                             <div>{`${restaurants.restName}`}</div>
                             <EditRestaurant generateRestaurant={generateRestaurant} restName={restaurants.restName} restCuisine={restaurants.restCuisine} restMenu={restaurants.restMenu} restMenuNum={restaurants.restMenuNum} />
-                            <Button variant="link" onClick={() => deleteRestaurant(restaurants.restId)}>❌</Button>
+                            <Button variant="link" onClick={() => deleteRestaurant(restaurants.restName)}>❌</Button>
                         </Card.Title>
                         <Card.Text>
                             {`${restaurants.restName} serves ${restaurants.restCuisine} cuisine and has ${restaurants.restMenuNum} menu items.`}
