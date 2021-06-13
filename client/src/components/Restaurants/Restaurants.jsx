@@ -8,6 +8,11 @@ import './style.css'
 const Restaurants = () => {
     const [restaurants, setRestaurants] = useState([]);
     const [menuItems, setMenuItems] = useState([]);
+    const [ingreItems, setIngreItems] = useState([]);
+
+    const generateIngres = (name, id) => {
+        
+    }
 
     let newMenu = [];
 
@@ -16,7 +21,7 @@ const Restaurants = () => {
         
 
         for (var i = 0; i < parseInt(menu); i++) {
-            newMenu.push({ item: `item` + `${i+1}`, description: 'about item', idx: `${Date.now()+i}` });
+            newMenu.push({ item: `item` + `${i+1}`, description: 'about item', idx: `${Date.now()+i}`, ingres: [] });
         };
         console.log(newMenu);
         setMenuItems(menuItems.push(newMenu));

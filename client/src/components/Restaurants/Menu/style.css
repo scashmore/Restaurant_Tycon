@@ -10,3 +10,8 @@
 .menuTitle {
     text-align: center;
 }
+.ingreBtn {
+    width: 60%;
+    margin-left: none;
+    margin-right: none;
+}

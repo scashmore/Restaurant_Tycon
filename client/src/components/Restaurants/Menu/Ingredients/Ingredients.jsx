@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Modal, Button} from 'react-bootstrap';
+import './style.css';
 //import Modal from 'react-overlays/Modal';
 
 const Ingredients = (ingreItems) => {
@@ -16,8 +17,8 @@ const Ingredients = (ingreItems) => {
                 </Modal.Header>
                 <Modal.Body>
                     {/* <ul>
-                        {ingreItems.map((ingreItems, index) => {
-                            return <li key={index}>
+                        {ingreItems.map((ingreItems, id) => {
+                            return <li key={id}>
                                 <h4 className='item'>
                                 {ingreItems.item}
                                 <Button variant="link">✎</Button>
