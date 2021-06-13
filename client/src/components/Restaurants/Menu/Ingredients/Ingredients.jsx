@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import {Modal, Button} from 'react-bootstrap';
 import './style.css';
-//import Modal from 'react-overlays/Modal';
 
-const Ingredients = (ingreItems) => {
+const Ingredients = () => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -17,10 +16,10 @@ const Ingredients = (ingreItems) => {
                 </Modal.Header>
                 <Modal.Body>
                     {/* <ul>
-                        {ingreItems.map((ingreItems, id) => {
+                        {ingres.map((ingres, id) => {
                             return <li key={id}>
                                 <h4 className='item'>
-                                {ingreItems.item}
+                                {ingres.ingredient}
                                 <Button variant="link">✎</Button>
                                 </h4>
                             </li>

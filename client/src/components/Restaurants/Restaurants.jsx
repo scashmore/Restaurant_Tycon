@@ -18,20 +18,18 @@ const Restaurants = () => {
                 newIngres.push(`ingredient` + `${i+1}`)
             }
             setIngreItems(ingreItems.push(newIngres));
+
     }
 
     let newMenu = [];
 
     const generateRestaurant = (name, cuisine, menu, id) => {
-
         
-
         for (var i = 0; i < parseInt(menu); i++) {
-            newMenu.push({ item: `item` + `${i+1}`, description: 'about item', idx: `${Date.now()+i}`, ingres: [] });
+            newMenu.push({ item: `item` + `${i+1}`, description: 'about item', idx: `${Date.now()+i}` });
         };
         console.log(newMenu);
-        setMenuItems(menuItems.push(newMenu));
-
+        setMenuItems(newMenu);
         setRestaurants(restaurants.concat(
             {
                 restName: name.charAt(0).toUpperCase() + name.slice(1),
@@ -41,7 +39,7 @@ const Restaurants = () => {
                 restId: id
                 
             }));
-
+            console.log(restaurants)
     }
 
     const updateRestaurant = (restId) => {

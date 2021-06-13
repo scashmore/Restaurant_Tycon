@@ -5,7 +5,7 @@ import IngredientsForm from './Ingredients/IngredientsForm/IngredientsForm'
 import MenuEdit from './MenuEdit/MenuEdit'
 
 import './style.css'
-const Menu = ({ restMenu, menuItems, deleteMenuItem, ingreItems, generateIngres }) => {
+const Menu = ({ restMenu, menuItems, deleteMenuItem, generateIngres }) => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -27,7 +27,7 @@ const Menu = ({ restMenu, menuItems, deleteMenuItem, ingreItems, generateIngres 
                             <p>
                                 {restMenu.description}
                             </p>
-                            {(restMenu.ingres.length === 0) ?
+                            {(0 === 0) ?
                             <>
                                 <Button className="ingreBtn" variant="outline-info" size="lg" onClick={handleShow}>Add Ingredients</Button>
                                 <Modal show={show} onHide={handleClose}>
@@ -43,7 +43,8 @@ const Menu = ({ restMenu, menuItems, deleteMenuItem, ingreItems, generateIngres 
                                 </Modal>
                             </>
                                 :
-                                <Ingredients ingreItems={ingreItems} />    
+                                <Ingredients  />    
+                                // ingres={restMenu.ingres}
                             }
                                     
                         </li>

@@ -7,7 +7,7 @@ class RestuarantForm extends React.Component {
         super(props);
 
         this.state = {
-            fields: {"name": "", "cuisine": "", "menu": "", "id": ""},
+            fields: {"name": "", "cuisine": "", "menu": "", "id": `${Date.now() + Math.random()}`},
             errors: {}
         }
     }
@@ -71,7 +71,7 @@ class RestuarantForm extends React.Component {
         return (
             <form onSubmit={this.handleSubmit.bind(this)}>
                 <fieldset className="restForm">
-                    <div ref="id" onChange={this.handleChange.bind(this, "id")} value={this.state.fields["id"]} hidden>{Date.now() + Math.random()}</div>
+                    
                     <label>Restaurant Name:</label>
                     <input ref="name" type="text" onChange={this.handleChange.bind(this, "name")} value={this.state.fields["name"]}></input>
                     <label>Cuisine Type:</label>
