@@ -22,7 +22,7 @@ const Menu = ({ restMenu, deleteMenuItem }) => {
                             return <li key={index}>
                                 <h6 className='item'>
                                     {restMenu.item}
-                                    <p><MenuEdit /></p>
+                                    <p><MenuEdit menuItem={restMenu.item} menuDescrip={restMenu.description}/></p>
                                     <Button variant="link" onClick={() => deleteMenuItem(restMenu.item)}>❌</Button>
                                 </h6>
                                 <p>

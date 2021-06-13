@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {Button, Modal} from 'react-bootstrap';
+import MenuForm from './MenuForm/MenuForm';
 
-const MenuEdit = () => {
+const MenuEdit = ({menuItem, menuDescrip}) => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -14,10 +15,10 @@ const MenuEdit = () => {
                     <Modal.Title>Edit Menu Item</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                        
+                        <MenuForm menuItem={menuItem} menuDescrip={menuDescrip}/>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>Close</Button>
+                    <Button variant="secondary" onClick={handleClose}>Cancel</Button>
                 </Modal.Footer>
             </Modal>
         </div>
