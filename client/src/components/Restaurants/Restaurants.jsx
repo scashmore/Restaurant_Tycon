@@ -11,7 +11,7 @@ const Restaurants = () => {
 
     const generateRestaurant = (name, cuisine, menu) => {
         for (var i = 0; i < parseInt(menu); i++) {
-            newMenu.push({ item: 'item', description: 'about item' });
+            newMenu.push({ item: `'item + ${i+1}'`, description: 'about item' });
         };
         console.log(newMenu);
 
@@ -25,21 +25,32 @@ const Restaurants = () => {
         setMenuItems(newMenu);
     }
 
+    const deleteRestaurant = (name) => {
+        const newList = restaurants.filter((restaurants) => restaurants.name !== name);
+        setRestaurants(newList);
+    }
+
+    const deleteMenuItem = (item) => {
+        const newList = menuItems.filter((menuItems) => menuItems.item !== item);
+        setMenuItems(newList);
+    }
+
 
     return (
         <div>
             <AddRestaurants generateRestaurant={generateRestaurant} />
             <div className="rest">
-                {restaurants.map((restaurants, index) => (<Card className="card" key={index}>
+                {restaurants.map((restaurant, index) => (<Card className="card" key={index}>
                     <Card.Body>
                         <Card.Title className="title">
-                            <div>{`${restaurants.restName}`}</div>
+                            <div>{`${restaurant.restName}`}</div>
                             <Button variant="link">✎</Button>
+                            <Button variant="link" onClick={() => deleteRestaurant(restaurant.name)}>❌</Button>
                         </Card.Title>
                         <Card.Text>
-                            {`${restaurants.restName} serves ${restaurants.restCuisine} cuisine and has ${restaurants.restMenu} menu items.`}
+                            {`${restaurant.restName} serves ${restaurant.restCuisine} cuisine and has ${restaurant.restMenu} menu items.`}
                         </Card.Text>
-                       <Menu menuItems={menuItems}/>
+                       <Menu menuItems={menuItems} deleteMenuItem={deleteMenuItem}/>
                     </Card.Body>
                 </Card>
                 ))}
