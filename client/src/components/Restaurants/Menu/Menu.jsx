@@ -1,9 +1,12 @@
-import React, {useState} from 'react'
-import { Button, Modal} from 'react-bootstrap';
+import React, { useState } from 'react'
+import { Button, Modal } from 'react-bootstrap';
 
 import './style.css'
 const Menu = (restMenu) => {
     const [show, setShow] = useState(false);
+    const [menuItems, setMenuItems] = useState(restMenu);
+
+   
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -15,13 +18,11 @@ const Menu = (restMenu) => {
                     <Modal.Title>Menu</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                        <ol>
-                            <li>Item</li>
-                            <li>Item</li>
-                            <li>Item</li>
-                            <li>Item</li>
-                            <li>Item</li>
-                        </ol>
+                    <ul>
+                        {menuItems.map((index) => {
+                            return <li key={index}></li>
+                        })}
+                    </ul>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>Close</Button>

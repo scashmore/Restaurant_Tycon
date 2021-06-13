@@ -8,14 +8,17 @@ const Restaurants = () => {
 const [restaurants, setRestaurants] = useState([]);
 
     const generateRestaurant = (name, cuisine, menu) => {
-       setRestaurants(restaurants.concat({restName: name.charAt(0).toUpperCase() + name.slice(1), restCuisine: cuisine.charAt(0).toUpperCase() + cuisine.slice(1), restMenu: parseInt(menu)}));
-        console.log(restaurants)
+       setRestaurants(restaurants.concat(
+           {restName: name.charAt(0).toUpperCase() + name.slice(1), 
+            restCuisine: cuisine.charAt(0).toUpperCase() + cuisine.slice(1), 
+            restMenu: parseInt(menu)
+        }));
     }
 
 
     return (
         <div>
-            <AddRestaurants generateRestaurant={generateRestaurant}/>
+            <AddRestaurants generateRestaurant={generateRestaurant} />
             <div className="rest">
             {restaurants.map((restaurants, index) => ( <Card className="card" key={index}>
                 <Card.Body>
@@ -26,7 +29,7 @@ const [restaurants, setRestaurants] = useState([]);
                 <Card.Text>
                    {`${restaurants.restName} serves ${restaurants.restCuisine} cuisine and has ${restaurants.restMenu} menu items.`}
                 </Card.Text>
-                <Menu />
+                <Menu restMenu={restaurants.restMenu}/>
                 </Card.Body>
             </Card>
             ))}
