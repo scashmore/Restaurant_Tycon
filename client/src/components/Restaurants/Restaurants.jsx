@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Card, Button, Modal } from 'react-bootstrap';
+import { Card, Button} from 'react-bootstrap';
 import AddRestaurants from './AddRestaurants/AddRestaurants'
 import Menu from './Menu/Menu'
 import './style.css'
@@ -25,8 +25,8 @@ const Restaurants = () => {
         setMenuItems(newMenu);
     }
 
-    const deleteRestaurant = (name) => {
-        const newList = restaurants.filter((restaurants) => restaurants.name !== name);
+    const deleteRestaurant = (restName) => {
+        const newList = restaurants.filter((restaurants) => restaurants.restName !== restName);
         setRestaurants(newList);
     }
 
@@ -40,15 +40,15 @@ const Restaurants = () => {
         <div>
             <AddRestaurants generateRestaurant={generateRestaurant} />
             <div className="rest">
-                {restaurants.map((restaurant, index) => (<Card className="card" key={index}>
+                {restaurants.map((restaurants, index) => (<Card className="card" key={index}>
                     <Card.Body>
                         <Card.Title className="title">
-                            <div>{`${restaurant.restName}`}</div>
+                            <div>{`${restaurants.restName}`}</div>
                             <Button variant="link">✎</Button>
-                            <Button variant="link" onClick={() => deleteRestaurant(restaurant.name)}>❌</Button>
+                            <Button variant="link" onClick={() => deleteRestaurant(restaurants.restName)}>❌</Button>
                         </Card.Title>
                         <Card.Text>
-                            {`${restaurant.restName} serves ${restaurant.restCuisine} cuisine and has ${restaurant.restMenu} menu items.`}
+                            {`${restaurants.restName} serves ${restaurants.restCuisine} cuisine and has ${restaurants.restMenu} menu items.`}
                         </Card.Text>
                        <Menu menuItems={menuItems} deleteMenuItem={deleteMenuItem}/>
                     </Card.Body>
