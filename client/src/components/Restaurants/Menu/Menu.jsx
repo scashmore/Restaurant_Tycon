@@ -35,7 +35,7 @@ const Menu = ({ restMenu, menuItems, deleteMenuItem, generateIngres }) => {
                                     <Modal.Title>Add Ingredients</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
-                                    <IngredientsForm generateIngres={generateIngres} handleClose={handleClose}/>
+                                    <IngredientsForm item={restMenu.ingres} generateIngres={generateIngres} handleClose={handleClose}/>
                                 </Modal.Body>
                                 <Modal.Footer>
                                  <Button variant="secondary" onClick={handleClose}>Close</Button>

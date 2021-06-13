@@ -12,12 +12,14 @@ const Restaurants = () => {
 
     let newIngres = [];
 
-        const generateIngres = (number, id) => {
+        const generateIngres = (number, id, item) => {
             
             for (var i = 0; i < parseInt(number); i++) {
                 newIngres.push({item: `ingredient` + `${i+1}`, idIngre: id })
             }
+            item.push(newIngres);
             setIngreItems(ingreItems.push(newIngres));
+            console.log(restaurants)
 
     }
 
