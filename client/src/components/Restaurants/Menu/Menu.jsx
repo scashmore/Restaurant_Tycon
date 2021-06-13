@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap';
+// import Modal from 'react-overlays/Modal';
 
 import './style.css'
 const Menu = ({ menuItems }) => {
@@ -17,11 +18,18 @@ const Menu = ({ menuItems }) => {
                     <ul>
                         {menuItems.map((menuItems, index) => {
                             return <li key={index}>
+                                <h4 className='item'>
                                 {menuItems.item}
                                 <Button variant="link">✎</Button>
+                                </h4>
+                                <p>
+                                {menuItems.description}
+                                </p>
+                                {/* <Ingredients /> */}
                             </li>
                         })}
                     </ul>
+
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>Close</Button>
