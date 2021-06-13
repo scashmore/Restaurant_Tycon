@@ -26,7 +26,6 @@ const Restaurants = () => {
             }));
 
         setMenuItems(newMenu);
-
     }
 
 
