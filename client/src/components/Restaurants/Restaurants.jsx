@@ -15,7 +15,7 @@ const Restaurants = () => {
         const generateIngres = (number, id, item) => {
             
             for (var i = 0; i < parseInt(number); i++) {
-                newIngres.push({item: `ingredient` + `${i+1}`, idIngre: id })
+                newIngres.push({item: `ingredient` + `${i+1}`, idIngre: id + `${i}` })
             }
             item.push(newIngres);
             setIngreItems(ingreItems.push(newIngres));

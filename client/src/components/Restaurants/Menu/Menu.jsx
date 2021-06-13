@@ -26,8 +26,9 @@ const Menu = ({ restMenu, menuItems, deleteMenuItem, generateIngres }) => {
                             </h6>
                             <p>
                                 {restMenu.description}
+                                {restMenu.ingres.length}
                             </p>
-                            {(restMenu.ingres.length === 0) ?
+                            {(restMenu.ingres.length < 1) ?
                             <>
                                 <Button className="ingreBtn" variant="outline-info" size="lg" onClick={handleShow}>Add Ingredients</Button>
                                 <Modal show={show} onHide={handleClose}>
