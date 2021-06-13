@@ -5,13 +5,13 @@ import './style.css'
 const Menu = (restMenu) => {
     const [show, setShow] = useState(false);
     const [menuItems, setMenuItems] = useState(restMenu);
-    const menu = [];
+    let menu = [];
     
 
-    for(i=0; i<menuItems; i++) {
-    menu.push({item: 'item', description: 'about item'})
+    for(var i=0; i<menuItems; i++) {
+    menu = menu.push({item: 'item', description: 'about item'})
+    console.log(menu);
     };
-
    
 
     const handleClose = () => setShow(false);
@@ -22,7 +22,7 @@ const Menu = (restMenu) => {
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Menu</Modal.Title>
-                </Modal.Header>s
+                </Modal.Header>
                 <Modal.Body>
                     <ul>
                         {menu.map((index) => {
