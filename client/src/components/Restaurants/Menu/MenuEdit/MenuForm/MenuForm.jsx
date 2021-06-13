@@ -5,7 +5,7 @@ class MenuForm extends React.Component {
         super(props);
 
         this.state = {
-            fields: {"item": ""},
+            fields: {"item": "", "description": ""},
             errors: {}
         }
     }
@@ -15,6 +15,7 @@ class MenuForm extends React.Component {
         let errors = {};
         let formIsValid = true;
 
+        //Item
         if (!fields["item"]) {
             formIsValid = false;
             errors["item"] = "Cannot be empty";
@@ -25,6 +26,12 @@ class MenuForm extends React.Component {
                 formIsValid = false;
                 errors["item"] = "Only letters";
             }
+        }
+
+        //Description
+        if (!fields["description"]) {
+            formIsValid = false;
+            errors["description"] = "Cannot be empty";
         }
 
         this.setState({ errors: errors });
@@ -56,6 +63,8 @@ class MenuForm extends React.Component {
                 <fieldset className="restForm">                    
                     <label>Item Name:</label>
                     <input ref="item" type="text" onChange={this.handleChange.bind(this, "item")} value={this.state.fields["item"]} placeholder={`${this.props.menuItem}`}></input>
+                    <label>Item Description:</label>
+                    <textarea rows="4" cols="50" maxLength="150" onChange={this.handleChange.bind(this, "description")} value={this.state.fields["description"]} placeholder={`${this.props.menuDescrip}`}></textarea>
                     <input className="formBtn" type="submit" value="Submit"/>
                 </fieldset>
             </form>
