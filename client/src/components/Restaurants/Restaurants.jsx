@@ -43,8 +43,8 @@ const Restaurants = () => {
         setRestaurants(newList);
     };
 
-    const deleteMenuItem = (item) => {
-        const newList = menuItems.filter((menuItems) => menuItems.item !== item);
+    const deleteMenuItem = (idx) => {
+        const newList = menuItems.filter((menuItems) => menuItems.idx !== idx);
         setMenuItems(newList);
     };
 
@@ -58,12 +58,12 @@ const Restaurants = () => {
                         <Card.Title className="title">
                             <div>{`${restaurants.restName}`}</div>
                             <EditRestaurant generateRestaurant={generateRestaurant} restName={restaurants.restName} restCuisine={restaurants.restCuisine} restMenu={restaurants.restMenu} restMenuNum={restaurants.restMenuNum} />
-                            <Button variant="link" onClick={() => deleteRestaurant(restaurants.restName)}>❌</Button>
+                            <Button variant="link" onClick={() => deleteRestaurant(restaurants.restId)}>❌</Button>
                         </Card.Title>
                         <Card.Text>
                             {`${restaurants.restName} serves ${restaurants.restCuisine} cuisine and has ${restaurants.restMenuNum} menu items.`}
                         </Card.Text>
-                       <Menu restMenu={restaurants.restMenu} deleteMenuItem={deleteMenuItem}/>
+                       <Menu restMenu={restaurants.restMenu} menuItems={menuItems} deleteMenuItem={deleteMenuItem}/>
                     </Card.Body>
                 </Card>
                 ))}

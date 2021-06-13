@@ -3,7 +3,7 @@ import { Button, Card, Modal } from 'react-bootstrap';
 import MenuEdit from './MenuEdit/MenuEdit'
 
 import './style.css'
-const Menu = ({ restMenu, deleteMenuItem }) => {
+const Menu = ({ restMenu, menuItems, deleteMenuItem }) => {
     const [show, setShow] = useState(false);
     //const [ingreItems, setIngreItems] = useState([]);
 
@@ -23,7 +23,7 @@ const Menu = ({ restMenu, deleteMenuItem }) => {
                                 <h6 className='item'>
                                     {restMenu.item}
                                     <MenuEdit menuItem={restMenu.item} menuDescrip={restMenu.description}/>
-                                    <Button variant="link" onClick={() => deleteMenuItem(restMenu.item)}>❌</Button>
+                                    <Button variant="link" onClick={() => deleteMenuItem(menuItems.idx)}>❌</Button>
                                 </h6>
                                 <p>
                                     {restMenu.description}
