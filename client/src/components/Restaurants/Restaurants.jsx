@@ -7,9 +7,6 @@ import './style.css'
 const Restaurants = () => {
     const [restaurants, setRestaurants] = useState([]);
     const [menuItems, setMenuItems] = useState([]);
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
     let newMenu = [];
 
     const generateRestaurant = (name, cuisine, menu) => {
