@@ -19,7 +19,7 @@ const Restaurants = () => {
             newMenu.push({ item: `item` + `${i+1}`, description: 'about item', idx: `${Date.now()+i}` });
         };
         console.log(newMenu);
-        setMenuItems(newMenu);
+        setMenuItems(menuItems.push(newMenu));
 
         setRestaurants(restaurants.concat(
             {
