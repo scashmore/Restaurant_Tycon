@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Card, Button} from 'react-bootstrap';
 import AddRestaurants from './AddRestaurants/AddRestaurants'
 import Menu from './Menu/Menu'
+import EditRestaurant from './EditRestaurant/EditRestaurant'
 import './style.css'
 
 const Restaurants = () => {
@@ -50,7 +51,7 @@ const Restaurants = () => {
                     <Card.Body>
                         <Card.Title className="title">
                             <div>{`${restaurants.restName}`}</div>
-                            <Button variant="link">✎</Button>
+                            <EditRestaurant generateRestaurant={generateRestaurant} restName={restaurants.restName} restCuisine={restaurants.restCuisine} restMenu={restaurants.restMenu} restMenuNum={restaurants.restMenuNum} />
                             <Button variant="link" onClick={() => deleteRestaurant(restaurants.restName)}>❌</Button>
                         </Card.Title>
                         <Card.Text>
