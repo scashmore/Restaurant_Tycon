@@ -27,7 +27,7 @@ const Menu = ({ restMenu, menuItems, deleteMenuItem, generateIngres }) => {
                             <p>
                                 {restMenu.description}
                             </p>
-                            {(0 === 0) ?
+                            {(restMenu.ingres.length === 0) ?
                             <>
                                 <Button className="ingreBtn" variant="outline-info" size="lg" onClick={handleShow}>Add Ingredients</Button>
                                 <Modal show={show} onHide={handleClose}>
@@ -43,8 +43,8 @@ const Menu = ({ restMenu, menuItems, deleteMenuItem, generateIngres }) => {
                                 </Modal>
                             </>
                                 :
-                                <Ingredients  />    
-                                // ingres={restMenu.ingres}
+                                <Ingredients  ingres={restMenu.ingres}/>    
+                                
                             }
                                     
                         </li>

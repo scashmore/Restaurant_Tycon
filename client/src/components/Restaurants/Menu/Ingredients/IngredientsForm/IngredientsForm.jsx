@@ -6,7 +6,7 @@ class IngredientsForm extends React.Component {
         super(props);
 
         this.state = {
-            fields: {"itemNum": ""},
+            fields: {"itemNum": "", "id": `${Date.now() + Math.random()}` },
             errors: {}
         }
     }
@@ -30,7 +30,7 @@ class IngredientsForm extends React.Component {
         e.preventDefault();
 
         if (this.handleValidation()) {
-            this.props.generateIngres(this.state.fields.itemNum)
+            this.props.generateIngres(this.state.fields.itemNum, this.state.fields.id)
             this.props.handleClose();
         } else {
             alert("Form has errors.")
