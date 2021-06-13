@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Card, Modal } from 'react-bootstrap';
 
 import './style.css'
-const Menu = ({ menuItems, deleteMenuItem }) => {
+const Menu = ({ restMenu, deleteMenuItem }) => {
     const [show, setShow] = useState(false);
     //const [ingreItems, setIngreItems] = useState([]);
 
@@ -13,33 +13,25 @@ const Menu = ({ menuItems, deleteMenuItem }) => {
     return (
 
         <div className="menu">
-            <Button className="menuBtn" variant="outline-info" size="sm" onClick={handleShow}>Menu</Button>
 
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Menu</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
+            <Card className="menuCard">
+                <Card.Title className="menuTitle">Menu</Card.Title>
                     <ul>
-                        {menuItems.map((menuItems, index) => {
+                        {restMenu.map((restMenu, index) => {
                             return <li key={index}>
-                                <h4 className='item'>
-                                    {menuItems.item}
+                                <h6 className='item'>
+                                    {restMenu.item}
                                     <Button variant="link">✎</Button>
-                                    <Button variant="link" onClick={() => deleteMenuItem(menuItems.item)}>❌</Button>
-                                </h4>
+                                    <Button variant="link" onClick={() => deleteMenuItem(restMenu.item)}>❌</Button>
+                                </h6>
                                 <p>
-                                    {menuItems.description}
+                                    {restMenu.description}
                                 </p>
                                 {/* <Ingredients /> */}
                             </li>
                         })}
                     </ul>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>Close</Button>
-                </Modal.Footer>
-            </Modal>
+                </Card>
         </div>
     )
 }

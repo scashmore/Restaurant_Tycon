@@ -1,3 +1,9 @@
 .item {
     margin-top: 2%;
 }
+.menuCard {
+    width: 80% !important;
+}
+.menuTitle {
+    text-align: center;
+}

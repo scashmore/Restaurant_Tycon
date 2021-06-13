@@ -7,7 +7,7 @@ class RestuarantForm extends React.Component {
         super(props);
 
         this.state = {
-            fields: {"name": "", "cuisine": "", "menu": ""},
+            fields: {"name": "", "cuisine": "", "menu": "", "id": ""},
             errors: {}
         }
     }
@@ -52,7 +52,7 @@ class RestuarantForm extends React.Component {
         e.preventDefault();
 
         if (this.handleValidation()) {
-            this.props.generateRestaurant(this.state.fields.name, this.state.fields.cuisine, this.state.fields.menu)
+            this.props.generateRestaurant(this.state.fields.name, this.state.fields.cuisine, this.state.fields.menu, this.state.fields.id)
             this.props.handleClose();
         } else {
             alert("Form has errors.")
@@ -71,6 +71,7 @@ class RestuarantForm extends React.Component {
         return (
             <form onSubmit={this.handleSubmit.bind(this)}>
                 <fieldset className="restForm">
+                    <div ref="id" onChange={this.handleChange.bind(this, "id")} value={this.state.fields["id"]} hidden>{Date.now() + Math.random()}</div>
                     <label>Restaurant Name:</label>
                     <input ref="name" type="text" onChange={this.handleChange.bind(this, "name")} value={this.state.fields["name"]}></input>
                     <label>Cuisine Type:</label>

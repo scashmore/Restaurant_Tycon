@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Card, Button} from 'react-bootstrap';
 import AddRestaurants from './AddRestaurants/AddRestaurants'
+import RestuarantForm from './AddRestaurants/RestuarantForm/RestaurantForm';
 import Menu from './Menu/Menu'
 import './style.css'
 
@@ -10,20 +11,25 @@ const Restaurants = () => {
 
     let newMenu = [];
 
-    const generateRestaurant = (name, cuisine, menu) => {
+    const generateRestaurant = (name, cuisine, menu, id) => {
+
+        
+
         for (var i = 0; i < parseInt(menu); i++) {
-            newMenu.push({ item: `'item + ${i+1}'`, description: 'about item' });
+            newMenu.push({ item: `'item` + `${i+1}'`, description: 'about item' });
         };
         console.log(newMenu);
+        setMenuItems(newMenu);
 
         setRestaurants(restaurants.concat(
             {
                 restName: name.charAt(0).toUpperCase() + name.slice(1),
                 restCuisine: cuisine.charAt(0).toUpperCase() + cuisine.slice(1),
-                restMenu: parseInt(menu)
+                restMenu: newMenu,
+                restMenuNum: parseInt(menu)
+                
             }));
 
-        setMenuItems(newMenu);
     }
 
     const deleteRestaurant = (restName) => {
@@ -49,9 +55,9 @@ const Restaurants = () => {
                             <Button variant="link" onClick={() => deleteRestaurant(restaurants.restName)}>❌</Button>
                         </Card.Title>
                         <Card.Text>
-                            {`${restaurants.restName} serves ${restaurants.restCuisine} cuisine and has ${restaurants.restMenu} menu items.`}
+                            {`${restaurants.restName} serves ${restaurants.restCuisine} cuisine and has ${restaurants.restMenuNum} menu items.`}
                         </Card.Text>
-                       <Menu menuItems={menuItems} deleteMenuItem={deleteMenuItem}/>
+                       <Menu restMenu={restaurants.restMenu} deleteMenuItem={deleteMenuItem}/>
                     </Card.Body>
                 </Card>
                 ))}
