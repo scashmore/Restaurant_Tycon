@@ -2,17 +2,10 @@ import React, { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap';
 
 import './style.css'
-const Menu = (restMenu) => {
+const Menu = (restNewMenu) => {
     const [show, setShow] = useState(false);
-    const [menuItems, setMenuItems] = useState(restMenu);
-    let menu = [];
-
-    const addMenu = () => {
-        for (var i = 0; i < menuItems; i++) {
-            menu = menu.push({ item: 'item', description: 'about item' })
-        };
-        console.log(menu);
-    }
+    const [menuItems, setMenuItems] = useState(restNewMenu);
+   
 
 
     const handleClose = () => setShow(false);
@@ -26,8 +19,11 @@ const Menu = (restMenu) => {
                 </Modal.Header>
                 <Modal.Body>
                     <ul>
-                        {menu.map((index) => {
-                            return <li key={index}>{menu.item}</li>
+                        {menuItems.map((index) => {
+                            return <li key={index}>
+                                {menuItems.item}
+                                <Button variant="link">✎</Button>
+                            </li>
                         })}
                     </ul>
                 </Modal.Body>
