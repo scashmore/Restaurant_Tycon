@@ -1,14 +1,24 @@
 import React, { useState } from 'react'
-import { Card, Button} from 'react-bootstrap';
+import { Card, Button, Modal} from 'react-bootstrap';
 import AddRestaurants from './AddRestaurants/AddRestaurants'
 import Menu from './Menu/Menu'
-import EditRestaurant from './EditRestaurant/EditRestaurant'
-import './style.css'
+import EditForm from './EditForm/EditForm';
+import './style.css';
 
 const Restaurants = () => {
     const [restaurants, setRestaurants] = useState([]);
     const [menuItems, setMenuItems] = useState([]);
     const [ingreItems, setIngreItems] = useState([]);
+    const [show, setShow] = useState(false);
+
+    const [modalId1, setModalId1] = useState('')
+
+    const handleModal = (e) =>{
+        setModalId1(e.currentTarget.value)
+        
+    }
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     let newIngres = [];
 
@@ -18,7 +28,7 @@ const Restaurants = () => {
                 newIngres.push({item: `ingredient` + `${i+1}`, idIngre: id + `${i}` })
             }
             item.push(newIngres);
-            setIngreItems(ingreItems.push(newIngres));
+            //setIngreItems(ingreItems.push(newIngres));
             console.log(restaurants)
 
     }
@@ -69,7 +79,20 @@ const Restaurants = () => {
                     <Card.Body>
                         <Card.Title className="title">
                             <div>{`${restaurants.restName}`}</div>
-                            <EditRestaurant generateRestaurant={generateRestaurant} restName={restaurants.restName} restCuisine={restaurants.restCuisine} restMenu={restaurants.restMenu} restMenuNum={restaurants.restMenuNum} />
+                            <div>
+            <Button className="editBtn" variant="link" size="lg" onClick={(e)=> {handleShow(); handleModal(e)}} value={restaurants.restId}>✎</Button>
+            <Modal show={show && (modalId1 === restaurants.restId)} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Edit Restaurant</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                        <EditForm generateRestaurant={generateRestaurant} handleClose={handleClose} restName={restaurants.restName} restCuisine={restaurants.restCuisine} restMenu={restaurants.restMenu} restMenuNum={restaurants.restMenuNum} restId={restaurants.restId}/>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>Cancel</Button>
+                </Modal.Footer>
+            </Modal>
+        </div>
                             <Button variant="link" onClick={() => deleteRestaurant(restaurants.restId)}>❌</Button>
                         </Card.Title>
                         <Card.Text>
