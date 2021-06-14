@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Card, Button, Modal} from 'react-bootstrap';
+import { Card, Button, Modal } from 'react-bootstrap';
 import AddRestaurants from './AddRestaurants/AddRestaurants'
 import Menu from './Menu/Menu'
 import EditForm from './EditForm/EditForm';
@@ -13,32 +13,32 @@ const Restaurants = () => {
 
     const [modalId1, setModalId1] = useState('')
 
-    const handleModal = (e) =>{
+    const handleModal = (e) => {
         setModalId1(e.currentTarget.value)
-        
+
     }
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     let newIngres = [];
 
-        const generateIngres = (number, id, item) => {
-            
-            for (var i = 0; i < parseInt(number); i++) {
-                newIngres.push({item: `ingredient` + `${i+1}`, idIngre: id + `${i}` })
-            }
-            item.push(newIngres);
-            //setIngreItems(ingreItems.push(newIngres));
-            console.log(restaurants)
+    const generateIngres = (number, id, item) => {
+
+        for (var i = 0; i < parseInt(number); i++) {
+            newIngres.push({ item: `ingredient` + `${i + 1}`, idIngre: id + `${i}` })
+        }
+        item.push(newIngres);
+        //setIngreItems(ingreItems.push(newIngres));
+        console.log(restaurants)
 
     }
 
     let newMenu = [];
 
     const generateRestaurant = (name, cuisine, menu, id) => {
-        
+
         for (var i = 0; i < parseInt(menu); i++) {
-            newMenu.push({ item: `item` + `${i+1}`, description: 'about item', idx: `${Date.now()+i}`, ingres: [] });
+            newMenu.push({ item: `item` + `${i + 1}`, description: 'about item', idx: `${Date.now() + i}`, ingres: [] });
         };
         console.log(newMenu);
         setMenuItems(newMenu);
@@ -49,13 +49,20 @@ const Restaurants = () => {
                 restMenu: newMenu,
                 restMenuNum: parseInt(menu),
                 restId: id
-                
+
             }));
-            console.log(restaurants)
+        console.log(restaurants)
     }
 
-    const updateRestaurant = (restId) => {
-        
+    const updateRestaurantName = (value1, value2, value3) => {
+        for (var i = 0; i < parseInt(value3); i++) {
+            newMenu.push({ item: `item` + `${i + 1}`, description: 'about item', idx: `${Date.now() + i}`, ingres: [] });
+        };
+        setMenuItems(newMenu);
+        const restaurant = [...restaurants]
+            restaurant.push({restName: value1, restCuisine: value2, restMenuNum: value3, restMenu: newMenu})
+            
+            setRestaurants(restaurant)
     };
 
 
@@ -80,25 +87,25 @@ const Restaurants = () => {
                         <Card.Title className="title">
                             <div>{`${restaurants.restName}`}</div>
                             <div>
-            <Button className="editBtn" variant="link" size="lg" onClick={(e)=> {handleShow(); handleModal(e)}} value={restaurants.restId}>✎</Button>
-            <Modal show={show && (modalId1 === restaurants.restId)} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Edit Restaurant</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                        <EditForm generateRestaurant={generateRestaurant} handleClose={handleClose} restName={restaurants.restName} restCuisine={restaurants.restCuisine} restMenu={restaurants.restMenu} restMenuNum={restaurants.restMenuNum} restId={restaurants.restId}/>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>Cancel</Button>
-                </Modal.Footer>
-            </Modal>
-        </div>
+                                <Button className="editBtn" variant="link" size="lg" onClick={(e) => { handleShow(); handleModal(e) }} value={restaurants.restId}>✎</Button>
+                                <Modal show={show && (modalId1 === restaurants.restId)} onHide={handleClose}>
+                                    <Modal.Header closeButton>
+                                        <Modal.Title>Edit Restaurant</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        <EditForm updateRestaurantName={updateRestaurantName} handleClose={handleClose} restName={restaurants.restName} restCuisine={restaurants.restCuisine} restMenu={restaurants.restMenu} restMenuNum={restaurants.restMenuNum} restId={restaurants.restId} />
+                                    </Modal.Body>
+                                    <Modal.Footer>
+                                        <Button variant="secondary" onClick={handleClose}>Cancel</Button>
+                                    </Modal.Footer>
+                                </Modal>
+                            </div>
                             <Button variant="link" onClick={() => deleteRestaurant(restaurants.restId)}>❌</Button>
                         </Card.Title>
                         <Card.Text>
                             {`${restaurants.restName} serves ${restaurants.restCuisine} cuisine and has ${restaurants.restMenuNum} menu items.`}
                         </Card.Text>
-                       <Menu generateIngres={generateIngres} restMenu={restaurants.restMenu} menuItems={menuItems} deleteMenuItem={deleteMenuItem}/>
+                        <Menu generateIngres={generateIngres} restMenu={restaurants.restMenu} menuItems={menuItems} deleteMenuItem={deleteMenuItem} />
                     </Card.Body>
                 </Card>
                 ))}
