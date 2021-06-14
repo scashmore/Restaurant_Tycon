@@ -18,28 +18,18 @@ class EditForm extends React.Component {
         //Name
 
         if (!fields["name"]) {
-            formIsValid = false;
-            errors["name"] = "Cannot be empty";
+            formIsValid = true;
         }
 
         //Cuisine
-
         if (!fields["cuisine"]) {
-            formIsValid = false;
-            errors["cuisine"] = "Cannot be empty";
+            formIsValid = true;
         }
-
-        if (typeof fields["cuisine"] !== "undefined") {
-            if (!fields["cuisine"].match(/^[a-zA-Z]+$/)) {
-                formIsValid = false;
-                errors["cuisine"] = "Only letters";
-            }
-        }
+        
 
         //Menu Item #
         if (!fields["menu"]) {
-            formIsValid = false;
-            errors["menu"] = "Cannot be empty";
+            formIsValid = true;
         }
 
         this.setState({ errors: errors });
@@ -50,7 +40,9 @@ class EditForm extends React.Component {
         e.preventDefault();
 
         if (this.handleValidation()) {
-            this.props.updateRestaurant(this.state.fields.name, this.state.fields.cuisine, this.state.fields.menu, this.props.restId);
+            if(this.state.fields.name !== "" || " ") this.props.updateRestaurantName(this.state.fields.name, this.props.restId);
+            if(this.state.fields.cuisine !== "") this.props.updateRestaurantCuisine(this.state.fields.cuisine, this.props.restId);
+            if(this.state.fields.menu !== "") this.props.updateRestaurantMenu(this.state.fields.menu, this.props.restId)
             this.props.handleClose();
         } else {
             alert("Form has errors.")

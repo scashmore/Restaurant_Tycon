@@ -32,7 +32,7 @@ class RestuarantForm extends React.Component {
         }
 
         if (typeof fields["cuisine"] !== "undefined") {
-            if (!fields["cuisine"].match(/^[a-zA-Z]+$/)) {
+            if (!fields["cuisine"].match(/^[a-zA-Z ]+$/)) {
                 formIsValid = false;
                 errors["cuisine"] = "Only letters";
             }
