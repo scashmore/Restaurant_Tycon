@@ -15,25 +15,13 @@ class EditForm extends React.Component {
         let errors = {};
         let formIsValid = true;
 
-        //Name
-
-        if (!fields["name"]) {
-            formIsValid = true;
-        }
-
         //Cuisine
-        if (!fields["cuisine"]) {
-            formIsValid = true;
-        }
-        
-
-        //Menu Item #
-        if (!fields["menu"]) {
-            formIsValid = true;
-        }
-
-        this.setState({ errors: errors });
-        return formIsValid;
+        if (typeof fields["cuisine"] !== "undefined") {
+            if (!fields["cuisine"].match(/^[a-zA-Z ]+$/)) {
+              formIsValid = false;
+              errors["cuisine"] = "Only letters";
+            }
+          }
     }
 
     handleSubmit(e) {
@@ -63,9 +51,9 @@ class EditForm extends React.Component {
                 <fieldset className="restForm">                    
                     <label>Change Restaurant Name:</label>
                     <input ref="name" type="text" onChange={this.handleChange.bind(this, "name")} value={this.state.fields["name"]} placeholder={`${this.props.restName}`}></input>
-                    <label>Cuisine Type:</label>
+                    <label>Change Cuisine Type:</label>
                     <input ref="cuisine" type="text" onChange={this.handleChange.bind(this, "cuisine")} value={this.state.fields["cuisine"]} placeholder={`${this.props.restCuisine}`}></input>
-                    <label>Number of Menu Itmes:</label>
+                    <label> Change Number of Menu Itmes:</label>
                     <input ref="menu" type="number" min='1' max='15'onChange={this.handleChange.bind(this, "menu")} value={this.state.fields["menu"]} placeholder={`${this.props.restMenuNum}`}></input>
                     <input className="formBtn" type="submit" value="Submit"/>
                 </fieldset>

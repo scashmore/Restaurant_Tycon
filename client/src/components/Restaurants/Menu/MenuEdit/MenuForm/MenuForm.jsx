@@ -22,7 +22,7 @@ class MenuForm extends React.Component {
         }
 
         if (typeof fields["item"] !== "undefined") {
-            if (!fields["item"].match(/^[a-zA-Z]+$/)) {
+            if (!fields["item"].match(/^[a-zA-Z ]+$/)) {
                 formIsValid = false;
                 errors["item"] = "Only letters";
             }
@@ -42,7 +42,7 @@ class MenuForm extends React.Component {
         e.preventDefault();
 
         if (this.handleValidation()) {
-            
+            this.props.updateMenuItem(this.state.fields.item)
             this.props.handleClose();
         } else {
             alert("Form has errors.")

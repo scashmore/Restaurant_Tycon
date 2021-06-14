@@ -90,6 +90,37 @@ const Restaurants = () => {
         setRestaurants([...restaurants.slice(0, index), ...restaurants.slice(index)]);
     }
 
+    const updateMenuItem =(value, idx) => {
+    //     // idea
+    //     // restaurants.findIndex(({restMenu}) => restMenu.findIndex(x => x.idx === idx)
+    //     // var index = restaurants[i].restMenu.findIndex(x => x.idx === idx)
+    //     // let rest = restaurant[i]
+    //     // let item = restMenu[index]
+    //     // let new = rest.item
+    //     // new.menuItem = value
+        
+    //     // setRestaurants([...restaurants.slice(0, i), ...restaurants.slice(i)])
+
+
+     }
+    // const findIndexOfMenuIdx = (menu, idx) => {menu.findIndex(x => x.idx === idx)};
+
+    // const updateMenuItem =(value, idx) => {
+    //     // Find the restaurant with an item that has the specified idx
+    //     const restIndex = restaurants.findIndex(({restMenu}) => findIndexOfMenuIdx(restMenu, idx));
+    //     const rest = restaurants[restIndex];
+    //     // Update the item
+    //     const menuItemIndex = findIndexOfMenuIdx(rest.restMenu, idx);
+    //     const item = restMenu[menuItemIndex];
+    //     const newItem = { ...item }; // Don't want to mutate the original object
+    //     newItem.menuItem = value;
+    //     // Update the menu
+    //     const newMenu = [...rest.restMenu];
+    //     newMenu[menuItemIndex] = newItem;
+    //     // Passing setRestaurants a callback might be unnecessary here.
+    //     setRestaurants((state) => [...state.slice(0, restIndex), {...rest, restMenu: newMenu}, ...state.slice(restIndex + 1)]);
+    // }
+
 
     const deleteRestaurant = (restId) => {
         const newList = restaurants.filter((restaurants) => restaurants.restId !== restId);
@@ -97,7 +128,12 @@ const Restaurants = () => {
     };
 
     const deleteMenuItem = (idx) => {
-        //restaurnt.menuitem.id idea here
+        //find restaurant index
+        
+        //delete index from restMenu
+        // var index = restaurants.restMenu.findIndex(x => x.idx === idx)
+        // restaurants.restMenu.splice(index);
+
         const newList = menuItems.filter((menuItems) => menuItems.idx !== idx);
         setMenuItems(newList);
     };
@@ -130,7 +166,7 @@ const Restaurants = () => {
                         <Card.Text>
                             {`${restaurants.restName} serves ${restaurants.restCuisine} cuisine and has ${restaurants.restMenuNum} menu items.`}
                         </Card.Text>
-                        <Menu generateIngres={generateIngres} restMenu={restaurants.restMenu} menuItems={menuItems} deleteMenuItem={deleteMenuItem} />
+                        <Menu generateIngres={generateIngres} updateMenuItem={updateMenuItem} restMenu={restaurants.restMenu} menuItems={menuItems} deleteMenuItem={deleteMenuItem} />
                     </Card.Body>
                 </Card>
                 ))}

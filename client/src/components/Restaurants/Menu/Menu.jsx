@@ -5,7 +5,7 @@ import IngredientsForm from './Ingredients/IngredientsForm/IngredientsForm'
 import MenuEdit from './MenuEdit/MenuEdit'
 
 import './style.css'
-const Menu = ({ restMenu, menuItems, deleteMenuItem, generateIngres }) => {
+const Menu = ({ restMenu, menuItems, deleteMenuItem, generateIngres, updateMenuItem }) => {
     const [show, setShow] = useState(false);
 
     const [modalId, setModalId] = useState('')
@@ -17,6 +17,10 @@ const Menu = ({ restMenu, menuItems, deleteMenuItem, generateIngres }) => {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    
+
+    
     return (
 
         <div className="menu">
@@ -28,8 +32,8 @@ const Menu = ({ restMenu, menuItems, deleteMenuItem, generateIngres }) => {
                         return <li key={restMenu.idx}>
                             <h6 className='item'>
                                 {restMenu.item}
-                                <MenuEdit menuItem={restMenu.item} menuDescrip={restMenu.description} />
-                                <Button variant="link" onClick={() => deleteMenuItem(menuItems.idx)}>❌</Button>
+                                <MenuEdit menuItem={restMenu.item} menuDescrip={restMenu.description} idx={restMenu.idx} />
+                                <Button variant="link" onClick={() => deleteMenuItem(restMenu.idx)}>❌</Button>
                             </h6>
                             <p>
                                 {restMenu.description}
@@ -43,7 +47,7 @@ const Menu = ({ restMenu, menuItems, deleteMenuItem, generateIngres }) => {
                                     <Modal.Title>Add Ingredients</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
-                                    <IngredientsForm item={restMenu.ingres} thing={restMenu.idx} restMenu={restMenu} generateIngres={generateIngres} handleClose={handleClose}/>
+                                    <IngredientsForm item={restMenu.ingres} thing={restMenu.idx} restMenu={restMenu} generateIngres={generateIngres} updateMenuItem={updateMenuItem} handleClose={handleClose}/>
                                 </Modal.Body>
                                 <Modal.Footer>
                                  <Button variant="secondary" onClick={handleClose}>Close</Button>
