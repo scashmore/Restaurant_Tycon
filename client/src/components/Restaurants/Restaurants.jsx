@@ -54,15 +54,28 @@ const Restaurants = () => {
         console.log(restaurants)
     }
 
-    const updateRestaurantName = (value1, value2, value3) => {
-        for (var i = 0; i < parseInt(value3); i++) {
-            newMenu.push({ item: `item` + `${i + 1}`, description: 'about item', idx: `${Date.now() + i}`, ingres: [] });
-        };
-        setMenuItems(newMenu);
-        const restaurant = [...restaurants]
-            restaurant.push({restName: value1, restCuisine: value2, restMenuNum: value3, restMenu: newMenu})
+    const updateRestaurant = (value1, value2, value3, restId) => {
+        if (value1 || value2 || value3 !== null) {
             
-            setRestaurants(restaurant)
+            var i = restaurants.findIndex(x => x.restId === restId)
+            let rest = restaurants[i]
+
+            if (value3 !== null) {
+                for (var i = 0; i < parseInt(value3); i++) {
+                    newMenu.push({ item: `item` + `${i + 1}`, description: 'about item', idx: `${Date.now() + i}`, ingres: [] });
+                }
+            };
+            setMenuItems(newMenu);
+
+            if (value1 !== null) rest.restName = value1;
+            if (value2 !== null) rest.restCuisine = value2;
+            if (value3 !== null) rest.restMenuNum = parseInt(value3);
+            if (value3 !== null) rest.restMenu = newMenu;
+
+            
+
+            setRestaurants([...restaurants.slice(0, i), ...restaurants.slice(i)]);
+        }
     };
 
 
@@ -93,7 +106,7 @@ const Restaurants = () => {
                                         <Modal.Title>Edit Restaurant</Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
-                                        <EditForm updateRestaurantName={updateRestaurantName} handleClose={handleClose} restName={restaurants.restName} restCuisine={restaurants.restCuisine} restMenu={restaurants.restMenu} restMenuNum={restaurants.restMenuNum} restId={restaurants.restId} />
+                                        <EditForm updateRestaurant={updateRestaurant} handleClose={handleClose} restName={restaurants.restName} restCuisine={restaurants.restCuisine} restMenuNum={restaurants.restMenuNum} restId={restaurants.restId} />
                                     </Modal.Body>
                                     <Modal.Footer>
                                         <Button variant="secondary" onClick={handleClose}>Cancel</Button>

@@ -50,7 +50,7 @@ class EditForm extends React.Component {
         e.preventDefault();
 
         if (this.handleValidation()) {
-            this.props.updateRestaurantName(this.state.fields.name, this.state.fields.cuisine, this.state.fields.menu);
+            this.props.updateRestaurant(this.state.fields.name, this.state.fields.cuisine, this.state.fields.menu, this.props.restId);
             this.props.handleClose();
         } else {
             alert("Form has errors.")
