@@ -55,6 +55,7 @@ const Restaurants = () => {
     };
 
     const deleteMenuItem = (idx) => {
+        //restaurnt.menuitem.id idea here
         const newList = menuItems.filter((menuItems) => menuItems.idx !== idx);
         setMenuItems(newList);
     };

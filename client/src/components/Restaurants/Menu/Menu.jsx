@@ -8,6 +8,13 @@ import './style.css'
 const Menu = ({ restMenu, menuItems, deleteMenuItem, generateIngres }) => {
     const [show, setShow] = useState(false);
 
+    const [modalId, setModalId] = useState('')
+    
+    const handleModal = (e) =>{
+        setModalId(e.currentTarget.value)
+        
+    }
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     return (
@@ -30,13 +37,13 @@ const Menu = ({ restMenu, menuItems, deleteMenuItem, generateIngres }) => {
                             </p>
                             {(restMenu.ingres.length < 1) ?
                             <>
-                                <Button className="ingreBtn" variant="outline-info" size="lg" onClick={handleShow}>Add Ingredients</Button>
-                                <Modal show={show} onHide={handleClose}>
+                                <Button className="ingreBtn" variant="outline-info" size="lg" onClick={(e)=> {handleShow(); handleModal(e)}} value={restMenu.idx}>Add Ingredients</Button>
+                                <Modal show={show && (modalId === restMenu.idx) } onHide={handleClose}>
                                 <Modal.Header closeButton>
                                     <Modal.Title>Add Ingredients</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
-                                    <IngredientsForm item={restMenu.ingres} generateIngres={generateIngres} handleClose={handleClose}/>
+                                    <IngredientsForm item={restMenu.ingres} thing={restMenu.idx} restMenu={restMenu} generateIngres={generateIngres} handleClose={handleClose}/>
                                 </Modal.Body>
                                 <Modal.Footer>
                                  <Button variant="secondary" onClick={handleClose}>Close</Button>
@@ -44,7 +51,7 @@ const Menu = ({ restMenu, menuItems, deleteMenuItem, generateIngres }) => {
                                 </Modal>
                             </>
                                 :
-                                <Ingredients  ingres={restMenu.ingres}/>    
+                                <Ingredients  ingres={restMenu.ingres} />    
                                 
                             }
                                     

@@ -12,9 +12,9 @@ const Ingredients = ({ingres}) => {
                 </Card.Title>
                 <Card.Body>
                     <ul>
-                        {ingres.map((ingres) => {
+                        {ingres.map((ingres, index) => {
                             return (
-                                <li key={ingres.idIngres}>
+                                <li key={index}>
                                 <h6 className='item'>
                                 {ingres.item}
                                 <Button variant="link">✎</Button>

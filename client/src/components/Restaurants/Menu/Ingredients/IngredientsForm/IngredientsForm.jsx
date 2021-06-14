@@ -31,7 +31,9 @@ class IngredientsForm extends React.Component {
 
         if (this.handleValidation()) {
             this.props.generateIngres(this.state.fields.itemNum, this.state.fields.id, this.props.item)
-            console.log(this.props.item);
+            console.log(this.props.item)
+            console.log(this.props.thing)
+            console.log(this.props.restMenu)
             this.props.handleClose();
         } else {
             alert("Form has errors.")
