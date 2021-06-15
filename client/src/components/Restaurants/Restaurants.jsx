@@ -23,11 +23,13 @@ const Restaurants = () => {
     let newIngres = [];
 
     const generateIngres = (number, id, item) => {
-
+        newIngres = [];
         for (var i = 0; i < parseInt(number); i++) {
-            newIngres.push({ item: `ingredient` + `${i + 1}`, idIngre: id + `${i}` })
+            newIngres.push("ingredient" + `${i}`)
         }
-        item.push(newIngres);
+        item.splice(0, item.length, ...newIngres);
+        //item.shift();
+
         //setIngreItems(ingreItems.push(newIngres));
         console.log(restaurants)
 
@@ -72,7 +74,8 @@ const Restaurants = () => {
         rest.restCuisine = value;
 
         setRestaurants([...restaurants.slice(0, i), ...restaurants.slice(i)]);
-};
+    }
+
 
     const updateRestaurantMenu = (value, restId) => {
         var index = restaurants.findIndex(x => x.restId === restId)
@@ -93,11 +96,12 @@ const Restaurants = () => {
     const updateMenuItem =(value, idx) => {
     //     // idea
     //     // restaurants.findIndex(({restMenu}) => restMenu.findIndex(x => x.idx === idx)
+              const menuItem = restaurants.find(({ restMenu }) => restMenu.find((menu) => menu.idx === idx))
     //     // var index = restaurants[i].restMenu.findIndex(x => x.idx === idx)
     //     // let rest = restaurant[i]
     //     // let item = restMenu[index]
     //     // let new = rest.item
-    //     // new.menuItem = value
+              menuItem.item = value
         
     //     // setRestaurants([...restaurants.slice(0, i), ...restaurants.slice(i)])
 
@@ -129,13 +133,13 @@ const Restaurants = () => {
 
     const deleteMenuItem = (idx) => {
         //find restaurant index
+        const menuItem = restaurants.filter(({ restMenu }) => restMenu.filter((menu) => menu.idx === idx))
         
         //delete index from restMenu
         // var index = restaurants.restMenu.findIndex(x => x.idx === idx)
         // restaurants.restMenu.splice(index);
 
-        const newList = menuItems.filter((menuItems) => menuItems.idx !== idx);
-        setMenuItems(newList);
+        setRestaurants(menuItem);
     };
 
 
@@ -143,7 +147,8 @@ const Restaurants = () => {
         <div>
             <AddRestaurants generateRestaurant={generateRestaurant} />
             <div className="rest">
-                {restaurants.map((restaurants, index) => (<Card className="card" key={index}>
+                {restaurants.map((restaurants, index) => (
+                <Card className="card" key={index}>
                     <Card.Body>
                         <Card.Title className="title">
                             <div>{`${restaurants.restName}`}</div>
@@ -173,6 +178,6 @@ const Restaurants = () => {
             </div>
         </div>
     )
-}
+};
 
 export default Restaurants

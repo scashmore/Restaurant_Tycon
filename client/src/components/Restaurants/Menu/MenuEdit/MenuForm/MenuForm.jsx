@@ -42,7 +42,7 @@ class MenuForm extends React.Component {
         e.preventDefault();
 
         if (this.handleValidation()) {
-            this.props.updateMenuItem(this.state.fields.item)
+            this.props.updateMenuItem(this.state.fields.item, this.props.idx)
             this.props.handleClose();
         } else {
             alert("Form has errors.")
