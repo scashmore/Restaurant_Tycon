@@ -1,4 +1,5 @@
 import React from 'react';
+import { updateRestaurantById } from '../../../../../api';
 
 
 class IngredientsForm extends React.Component {
@@ -28,12 +29,12 @@ class IngredientsForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        const { restaurant } = this.props
 
         if (this.handleValidation()) {
             this.props.generateIngres(this.state.fields.itemNum, this.state.fields.id, this.props.item)
-            console.log(this.props.item)
-            console.log(this.props.thing)
-            console.log(this.props.restMenu)
+            
+            updateRestaurantById(restaurant._id, restaurant)
             this.props.handleClose();
         } else {
             alert("Form has errors.")

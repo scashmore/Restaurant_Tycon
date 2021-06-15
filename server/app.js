@@ -1,9 +1,12 @@
-const express = require('express')();
+const express = require('express');
 const http = require('http').Server(express);
 const bodyParser = require('body-parser');
 var cors = require("cors");
 const options = { cors: { origin: "*" } };
 const Socketio = require('socket.io')(http, options);
+const app = express()
+const db = require("./db")
+const restaurantRouter = require("./routes/reataurant-router")
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
@@ -21,6 +24,6 @@ app.get('/', (req, res) => {
 
 app.use('/api', restaurantRouter)
 
-http.listen(3001, ()=> {
+app.listen(3001, ()=> {
     console.log('listening on port 3001')
 });

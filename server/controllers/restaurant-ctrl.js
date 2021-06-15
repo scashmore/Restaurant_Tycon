@@ -1,4 +1,4 @@
-const Restaurant = require('../models/restuarant-model');
+const Restaurant = require('../models/restaurant-model');
 
 createRestaurant = (req, res) => {
     const body = req.body
@@ -43,7 +43,7 @@ updateRestaurant = async (req, res) => {
         })
     }
 
-    restaurant.findOne({ _id: req.params.id }, (err, restaurant) => {
+    Restaurant.findOne({ _id: req.params.id }, (err, restaurant) => {
         if (err) {
             return res.status(404).json({
                 err,
@@ -74,7 +74,7 @@ updateRestaurant = async (req, res) => {
 }
 
 deleteRestaurant = async (req, res) => {
-    await restaurant.findOneAndDelete({ _id: req.params.id }, (err, restaurant) => {
+    await Restaurant.findOneAndDelete({ _id: req.params.id }, (err, restaurant) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -90,7 +90,7 @@ deleteRestaurant = async (req, res) => {
 }
 
 getRestaurantById = async (req, res) => {
-    await restaurant.findOne({ _id: req.params.id }, (err, restaurant) => {
+    await Restaurant.findOne({ _id: req.params.id }, (err, restaurant) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -105,7 +105,7 @@ getRestaurantById = async (req, res) => {
 }
 
 getRestaurants = async (req, res) => {
-    await restaurant.find({}, (err, restaurants) => {
+    await Restaurant.find({}, (err, restaurants) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }

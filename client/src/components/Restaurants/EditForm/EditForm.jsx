@@ -1,4 +1,5 @@
 import React from 'react';
+import { updateRestaurantById } from '../../../api';
 
 class EditForm extends React.Component {
     constructor(props) {
@@ -16,26 +17,50 @@ class EditForm extends React.Component {
         let formIsValid = true;
 
         //Cuisine
+        //Name
+
+        if (!fields["name"]) {
+            formIsValid = true;
+        }
+
+        //Cuisine
+
+        if (!fields["cuisine"]) {
+            formIsValid = true;
+        }
+
         if (typeof fields["cuisine"] !== "undefined") {
             if (!fields["cuisine"].match(/^[a-zA-Z ]+$/)) {
-              formIsValid = false;
-              errors["cuisine"] = "Only letters";
+                formIsValid = false;
+                errors["cuisine"] = "Only letters";
             }
-          }
+        }
+
+
+        //Menu
+        if (!fields["menu"]) {
+            formIsValid = true;
+        }
+
+        return formIsValid
     }
 
     handleSubmit(e) {
         e.preventDefault();
+        const { restaurants } = this.props
 
         if (this.handleValidation()) {
-            if(this.state.fields.name !== "" || " ") this.props.updateRestaurantName(this.state.fields.name, this.props.restId);
+            if(this.state.fields.name !== "") this.props.updateRestaurantName(this.state.fields.name, this.props.restId);
             if(this.state.fields.cuisine !== "") this.props.updateRestaurantCuisine(this.state.fields.cuisine, this.props.restId);
             if(this.state.fields.menu !== "") this.props.updateRestaurantMenu(this.state.fields.menu, this.props.restId)
+            
+            //make api call to the backend to update the current restaurant
+            updateRestaurantById(restaurants._id, restaurants)
             this.props.handleClose();
         } else {
             alert("Form has errors.")
         }
-
+        
     }
 
     handleChange(field, e) {

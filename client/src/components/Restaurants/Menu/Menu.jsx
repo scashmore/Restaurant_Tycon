@@ -5,7 +5,7 @@ import IngredientsForm from './Ingredients/IngredientsForm/IngredientsForm'
 import MenuEdit from './MenuEdit/MenuEdit'
 
 import './style.css'
-const Menu = ({ restMenu, deleteMenuItem, generateIngres, updateMenuItem }) => {
+const Menu = ({ restMenu, generateIngres, restaurant }) => {
     const [show, setShow] = useState(false);
 
     const [modalId, setModalId] = useState('')
@@ -31,8 +31,8 @@ const Menu = ({ restMenu, deleteMenuItem, generateIngres, updateMenuItem }) => {
                         return <li key={restMenu.idx}>
                             <div className='item'>
                                 {restMenu.item}
-                                <MenuEdit menuItem={restMenu.item} updateMenuItem={updateMenuItem} menuDescrip={restMenu.description} idx={restMenu.idx} />
-                                <Button variant="link" onClick={() => deleteMenuItem(restMenu.idx)}>❌</Button>
+                                {/* <MenuEdit menuItem={restMenu.item} updateMenuItem={updateMenuItem} menuDescrip={restMenu.description} idx={restMenu.idx} /> */}
+                                {/* <Button variant="link" onClick={() => deleteMenuItem(restMenu.idx)}>❌</Button> */}
                             </div>
                             <p>
                                 {restMenu.description}
@@ -45,7 +45,7 @@ const Menu = ({ restMenu, deleteMenuItem, generateIngres, updateMenuItem }) => {
                                     <Modal.Title>Add Ingredients</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
-                                    <IngredientsForm item={restMenu.ingres} thing={restMenu.idx} restMenu={restMenu} generateIngres={generateIngres} handleClose={handleClose}/>
+                                    <IngredientsForm restaurant={restaurant} item={restMenu.ingres} thing={restMenu.idx} restMenu={restMenu} generateIngres={generateIngres} handleClose={handleClose}/>
                                 </Modal.Body>
                                 <Modal.Footer>
                                  <Button variant="secondary" onClick={handleClose}>Close</Button>

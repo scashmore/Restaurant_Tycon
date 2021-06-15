@@ -3,7 +3,7 @@ import { Card, Button } from 'react-bootstrap';
 import './style.css';
 
 const Ingredients = ({ ingres }) => {
-    console.log(ingres)
+    
     return (
 
         <div className="ingre">
@@ -18,7 +18,7 @@ const Ingredients = ({ ingres }) => {
                                 <li key={index}>
                                     <div className='itemIngre'>
                                         {`${ingres}`}
-                                        <Button variant="link">✎</Button>
+                                        {/* <Button variant="link">✎</Button> */}
                                     </div>
                                 </li>
                             )
