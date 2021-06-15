@@ -18,4 +18,4 @@ const apis = {
     getRestaurantById,
 }
 
-export default apis
+export default api

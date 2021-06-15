@@ -5,7 +5,7 @@ import IngredientsForm from './Ingredients/IngredientsForm/IngredientsForm'
 import MenuEdit from './MenuEdit/MenuEdit'
 
 import './style.css'
-const Menu = ({ restMenu, deleteMenuItem, generateIngres, updateMenuItem, ingres }) => {
+const Menu = ({ restMenu, deleteMenuItem, generateIngres, updateMenuItem }) => {
     const [show, setShow] = useState(false);
 
     const [modalId, setModalId] = useState('')
