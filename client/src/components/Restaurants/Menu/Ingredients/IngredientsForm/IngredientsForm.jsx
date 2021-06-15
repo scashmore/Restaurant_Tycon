@@ -7,7 +7,7 @@ class IngredientsForm extends React.Component {
         super(props);
 
         this.state = {
-            fields: {"itemNum": "", "id": `${Date.now() + Math.random()}` },
+            fields: {"itemNum": "", "id": `${Date.now() + Math.random()}`, "itemNumMax": "", "itemNumMin": "" },
             errors: {}
         }
     }
@@ -18,13 +18,30 @@ class IngredientsForm extends React.Component {
         let formIsValid = true;
 
         //Item
-        if (!fields["itemNum"]) {
+        if (!fields["itemNumMax"]) {
             formIsValid = false;
-            errors["itemNum"] = "Cannot be empty";
+            errors["itemNumMax"] = "Cannot be empty";
+        }
+
+        if (!fields["itemNumMin"]) {
+            formIsValid = false;
+            errors["itemNumMin"] = "Cannot be empty";
+        }
+        if (parseInt(fields["itemNumMin"]) > parseInt(fields["itemNumMax"])) {
+            formIsValid = false;
+            errors["itemNumMin"] = "Max must be less than min"
         }
 
         this.setState({ errors: errors });
         return formIsValid;
+    }
+
+    handleMenuNum = () => {
+        var max = parseInt(this.state.fields.itemNumMin);
+        var min = parseInt(this.state.fields.itemNumMax);
+        var numb = (Math.floor(Math.random() * (max -min) + min));
+
+        this.state.fields.itemNum = numb
     }
 
     handleSubmit(e) {
@@ -32,6 +49,7 @@ class IngredientsForm extends React.Component {
         const { restaurant } = this.props
 
         if (this.handleValidation()) {
+            this.handleMenuNum();
             this.props.generateIngres(this.state.fields.itemNum, this.state.fields.id, this.props.item)
             
             updateRestaurantById(restaurant._id, restaurant)
@@ -53,8 +71,10 @@ class IngredientsForm extends React.Component {
         return (
             <form onSubmit={this.handleSubmit.bind(this)}>
                 <fieldset className="restForm">                    
-                    <label>Number of Ingredients:</label>
-                    <input ref="itemNum" type="number" min="1" max="15" onChange={this.handleChange.bind(this, "itemNum")} value={this.state.fields["itemNum"]}></input>
+                    <label>Max Number of Ingredients:</label>
+                    <input ref="itemNumMax" type="number" min="1" max="15" onChange={this.handleChange.bind(this, "itemNumMax")} value={this.state.fields["itemNumMax"]}></input>
+                    <label>Min Number of Ingredients:</label>
+                    <input ref="itemNumMin" type="number" min="1" max="15" onChange={this.handleChange.bind(this, "itemNumMin")} value={this.state.fields["itemNumMin"]}></input>
                     <input className="formBtn" type="submit" value="Submit"/>
                 </fieldset>
             </form>

@@ -6,7 +6,7 @@ class EditForm extends React.Component {
         super(props);
 
         this.state = {
-            fields: {"name": "", "cuisine": "", "menu": ""},
+            fields: {"name": "", "cuisine": "", "menu": "", "menuMax": "", "menuMin": ""},
             errors: {}
         }
     }
@@ -20,13 +20,13 @@ class EditForm extends React.Component {
         //Name
 
         if (!fields["name"]) {
-            formIsValid = true;
+            formIsValid = false;
         }
 
         //Cuisine
 
         if (!fields["cuisine"]) {
-            formIsValid = true;
+            formIsValid = false;
         }
 
         if (typeof fields["cuisine"] !== "undefined") {
@@ -38,21 +38,38 @@ class EditForm extends React.Component {
 
 
         //Menu
-        if (!fields["menu"]) {
-            formIsValid = true;
+        if (!fields["menuMax"]) {
+            formIsValid = false;
+            errors["menuMax"] = "Cannot be empty";
+        }
+        if (!fields["menuMin"]) {
+            formIsValid = false;
+            errors["menuMin"] = "Cannot be empty";
+        }
+        if (parseInt(fields["menuMin"]) > parseInt(fields["menuMax"])) {
+            formIsValid = false;
+            errors["menuMin"] = "Max must be less than min"
         }
 
         return formIsValid
     }
 
+    handleMenuNum = () => {
+        var max = parseInt(this.state.fields.menuMax);
+        var min = parseInt(this.state.fields.menuMin);
+        var numb = (Math.floor(Math.random() * (max -min) + min));
+
+        this.state.fields.menu = numb
+    }
+
     handleSubmit(e) {
         e.preventDefault();
         const { restaurants } = this.props
-
         if (this.handleValidation()) {
-            if(this.state.fields.name !== "") this.props.updateRestaurantName(this.state.fields.name, this.props.restId);
-            if(this.state.fields.cuisine !== "") this.props.updateRestaurantCuisine(this.state.fields.cuisine, this.props.restId);
-            if(this.state.fields.menu !== "") this.props.updateRestaurantMenu(this.state.fields.menu, this.props.restId)
+            this.handleMenuNum();
+            this.props.updateRestaurantName(this.state.fields.name, this.props.restId);
+            this.props.updateRestaurantCuisine(this.state.fields.cuisine, this.props.restId);
+            this.props.updateRestaurantMenu(this.state.fields.menu, this.props.restId)
             
             //make api call to the backend to update the current restaurant
             updateRestaurantById(restaurants._id, restaurants)
@@ -78,8 +95,10 @@ class EditForm extends React.Component {
                     <input ref="name" type="text" onChange={this.handleChange.bind(this, "name")} value={this.state.fields["name"]} placeholder={`${this.props.restName}`}></input>
                     <label>Change Cuisine Type:</label>
                     <input ref="cuisine" type="text" onChange={this.handleChange.bind(this, "cuisine")} value={this.state.fields["cuisine"]} placeholder={`${this.props.restCuisine}`}></input>
-                    <label> Change Number of Menu Itmes:</label>
-                    <input ref="menu" type="number" min='1' max='15'onChange={this.handleChange.bind(this, "menu")} value={this.state.fields["menu"]} placeholder={`${this.props.restMenuNum}`}></input>
+                    <label> Change Max Number of Menu Itmes:</label>
+                    <input ref="menu" type="number" min='1' max='15'onChange={this.handleChange.bind(this, "menuMax")} value={this.state.fields["menuMax"]} placeholder={`${this.props.restMenuNum}`}></input>
+                    <label> Change Min Number of Menu Itmes:</label>
+                    <input ref="menu" type="number" min='1' max='15'onChange={this.handleChange.bind(this, "menuMin")} value={this.state.fields["menuMin"]} placeholder={`${this.props.restMenuNum}`}></input>
                     <input className="formBtn" type="submit" value="Submit"/>
                 </fieldset>
             </form>

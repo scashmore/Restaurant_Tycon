@@ -13,6 +13,8 @@ const Restaurants = () => {
     const [show, setShow] = useState(false);
 
     const [modalId1, setModalId1] = useState('')
+
+   
     
     let newMenu = [];
     let newIngres = [];
@@ -148,7 +150,7 @@ const Restaurants = () => {
         deleteRestaurantById(id)
     };
 
-    const deleteMenuItem = (idx) => {
+   // const deleteMenuItem = (idx) => {
         //find restaurant index
         //const menuItem = restaurants.filter(({ restMenu }) => restMenu.filter((menu) => menu.idx === idx))
 
@@ -157,7 +159,7 @@ const Restaurants = () => {
         // restaurants.restMenu.splice(index);
 
         //setRestaurants(menuItem);
-    };
+   // };
 
     return (
         <div>
@@ -187,7 +189,7 @@ const Restaurants = () => {
                             <Card.Text>
                                 {`${restaurants.restName} serves ${restaurants.restCuisine} cuisine and has ${restaurants.restMenuNum} menu items.`}
                             </Card.Text>
-                            <Menu restaurant={restaurants} generateIngres={generateIngres} restMenu={restaurants.restMenu} deleteMenuItem={deleteMenuItem} />
+                            <Menu restaurant={restaurants} generateIngres={generateIngres} restMenu={restaurants.restMenu} />
                         </Card.Body>
                     </Card>
                 ))}
