@@ -9,9 +9,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 app.use(bodyParser.json());
 
-Socketio.on("connection", (socket) => {
+// Socketio.on("connection", (socket) => {
 
-}
+// }
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 

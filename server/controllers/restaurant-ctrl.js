@@ -43,7 +43,7 @@ updateRestaurant = async (req, res) => {
         })
     }
 
-    Restaurant.findOne({ _id: req.params.id }, (err, Restaurant) => {
+    restaurant.findOne({ _id: req.params.id }, (err, restaurant) => {
         if (err) {
             return res.status(404).json({
                 err,
