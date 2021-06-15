@@ -16,10 +16,10 @@ const Ingredients = ({ ingres }) => {
                         {ingres.map((ingres, index) => {
                             return (
                                 <li key={index}>
-                                    <h6 className='item'>
+                                    <div className='itemIngre'>
                                         {`${ingres}`}
                                         <Button variant="link">✎</Button>
-                                    </h6>
+                                    </div>
                                 </li>
                             )
                         })}

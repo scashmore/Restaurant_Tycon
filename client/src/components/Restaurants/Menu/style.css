@@ -1,6 +1,8 @@
 .item {
     margin-top: 2%;
     display: flex;
+    font-size: 18px;
+    font-weight: bolder;
     flex-direction: row;
     align-items: center;
 }
@@ -15,4 +17,7 @@
     margin-left: none;
     margin-right: none;
     font-size: 14px;
+}
+ul {
+    list-style-type: none;
 }

@@ -29,14 +29,13 @@ const Menu = ({ restMenu, deleteMenuItem, generateIngres, updateMenuItem, ingres
                 <ul>
                     {restMenu.map((restMenu) => {
                         return <li key={restMenu.idx}>
-                            <h6 className='item'>
+                            <div className='item'>
                                 {restMenu.item}
                                 <MenuEdit menuItem={restMenu.item} updateMenuItem={updateMenuItem} menuDescrip={restMenu.description} idx={restMenu.idx} />
                                 <Button variant="link" onClick={() => deleteMenuItem(restMenu.idx)}>❌</Button>
-                            </h6>
+                            </div>
                             <p>
                                 {restMenu.description}
-                                {restMenu.ingres.length}
                             </p>
                             {(restMenu.ingres.length < 1) ?
                             <>

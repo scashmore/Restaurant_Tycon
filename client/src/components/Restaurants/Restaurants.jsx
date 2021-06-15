@@ -25,14 +25,9 @@ const Restaurants = () => {
     const generateIngres = (number, id, item) => {
         newIngres = [];
         for (var i = 0; i < parseInt(number); i++) {
-            newIngres.push("ingredient" + `${i}`)
+            newIngres.push("ingredient" + ` ` + `${i+1}`)
         }
         item.splice(0, item.length, ...newIngres);
-        //item.shift();
-
-        //setIngreItems(ingreItems.push(newIngres));
-        console.log(restaurants)
-
     }
 
     let newMenu = [];
@@ -88,8 +83,6 @@ const Restaurants = () => {
         rest.restMenuNum = parseInt(value);
         rest.restMenu = newMenu;
 
-
-
         setRestaurants([...restaurants.slice(0, index), ...restaurants.slice(index)]);
     }
 
@@ -133,13 +126,13 @@ const Restaurants = () => {
 
     const deleteMenuItem = (idx) => {
         //find restaurant index
-        const menuItem = restaurants.filter(({ restMenu }) => restMenu.filter((menu) => menu.idx === idx))
+        //const menuItem = restaurants.filter(({ restMenu }) => restMenu.filter((menu) => menu.idx === idx))
         
         //delete index from restMenu
         // var index = restaurants.restMenu.findIndex(x => x.idx === idx)
         // restaurants.restMenu.splice(index);
 
-        setRestaurants(menuItem);
+        //setRestaurants(menuItem);
     };
 
 
