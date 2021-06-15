@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import io from 'socket.io-client';
 import { Card, Button, Modal } from 'react-bootstrap';
 import AddRestaurants from './AddRestaurants/AddRestaurants'
 import Menu from './Menu/Menu'
 import EditForm from './EditForm/EditForm';
+import Header from './Header/Header';
 import './style.css';
 import { deleteRestaurantById } from '../../api';
 
@@ -163,6 +165,7 @@ const Restaurants = () => {
 
     return (
         <div>
+            <Header />
             <AddRestaurants generateRestaurant={generateRestaurant} />
             <div className="rest">
                 {restaurants.map((restaurants, index) => (
