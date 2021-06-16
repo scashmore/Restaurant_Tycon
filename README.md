@@ -1,7 +1,7 @@
 # Restaurant_Tycon
 Build out your restaurant! Select your cuisine, menu, and ingredients.
 
-Deployed: 
+Deployed: https://restauranttycon.herokuapp.com/
 
 ## Use
 
