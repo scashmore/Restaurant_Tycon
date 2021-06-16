@@ -35,7 +35,7 @@ Front End: https://github.com/scashmore/Tycon_Font
 
 There is an issue with socket.io. For some reason, depending on the order in which the client windows are opened, something like ths happens: 
 
-![Bug](./assets?Bug.gif)
+![Bug](./assets/Bug.gif)
 
 This is also interfering with other sockets. The only one that will work is when an object is created.
 
