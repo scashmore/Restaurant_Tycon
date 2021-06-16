@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import io from 'socket.io-client';
+import socketIOClient from 'socket.io-client';
 import { Card, Button, Modal } from 'react-bootstrap';
 import AddRestaurants from './AddRestaurants/AddRestaurants'
 import Menu from './Menu/Menu'
@@ -7,6 +7,7 @@ import EditForm from './EditForm/EditForm';
 import Header from './Header/Header';
 import './style.css';
 import { deleteRestaurantById } from '../../api';
+let socket;
 
 const Restaurants = () => {
     const [restaurants, setRestaurants] = useState([]);  
@@ -16,7 +17,40 @@ const Restaurants = () => {
 
     const [modalId1, setModalId1] = useState('')
 
-   
+    useEffect(() => {
+        (() => {
+          socket = socketIOClient(process.env.REACT_APP_API_URL);
+          socket.on("product-created", (data) => {
+            setRestaurants(restaurants => {
+                return[...restaurants, data]}
+                )
+          });
+        })();
+      }, []);
+    
+    useEffect(() => {
+        (() => {
+          socket = socketIOClient(process.env.REACT_APP_API_URL);
+          socket.on("product-deleted", (data) => {
+              console.log(data);
+            setRestaurants(restaurants.filter(restaurant => restaurant._id !== data._id)) })
+          })();
+      });
+    
+     useEffect(() => {
+        (() => {
+          socket = socketIOClient(process.env.REACT_APP_API_URL);
+          socket.on("product-updated", (data) => {
+              console.log(data);
+            setRestaurants(restaurants => {
+               return restaurants.map( restaurant => {
+                     if(restaurant._id === data._id) return data
+                     return restaurant
+                 })}
+                 )
+           });
+      })();
+    }, [])
     
     let newMenu = [];
     let newIngres = [];
@@ -38,7 +72,7 @@ const Restaurants = () => {
     }  
     
     useEffect(() => {
-        fetch("http://localhost:3001/api/restaurants")
+        fetch(process.env.REACT_APP_API_URL + "/api/restaurants")
         .then(res => res.json())
         .then(data => {
             setRestaurants(data.data)
@@ -59,7 +93,7 @@ const Restaurants = () => {
 
             }));
         
-        fetch("http://localhost:3001/api/restaurant", {
+        fetch(process.env.REACT_APP_API_URL +"/api/restaurant", {
             method: "POST",
             body: JSON.stringify({
                 restName: name.charAt(0).toUpperCase() + name.slice(1),
@@ -169,7 +203,7 @@ const Restaurants = () => {
             <AddRestaurants generateRestaurant={generateRestaurant} />
             <div className="rest">
                 {restaurants.map((restaurants, index) => (
-                    <Card className="card" key={index}>
+                    <Card className="cardRest" key={index}>
                         <Card.Body>
                             <Card.Title className="title">
                                 <div>{`${restaurants.restName}`}</div>
