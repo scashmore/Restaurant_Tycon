@@ -24,3 +24,11 @@ That's all! Enjoy!
 ## Future Development
 
 In the future I would like a user to be able to edit and delete menu items and ingredients.
+
+## Notes
+
+Repos for Herkou deployment can be found here.
+
+Front End: https://github.com/scashmore/Tycon_Font
+
+Back End: https://github.com/scashmore/Tycon_Back
