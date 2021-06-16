@@ -30,6 +30,7 @@ In the future I would like a user to be able to edit and delete menu items and i
 Repos for Herkou deployment can be found here.
 
 Front End: https://github.com/scashmore/Tycon_Font
+Back End: https://github.com/scashmore/Tycon_Back
 
 ## Bug/Issue
 
@@ -38,5 +39,3 @@ There is an issue with socket.io. For some reason, depending on the order in whi
 ![Bug](./assets/Bug.gif)
 
 This is also interfering with other sockets. The only one that will work is when an object is created.
-
-Back End: https://github.com/scashmore/Tycon_Back
