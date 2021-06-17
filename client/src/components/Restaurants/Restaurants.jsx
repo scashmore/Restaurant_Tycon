@@ -83,15 +83,15 @@ const Restaurants = () => {
         for (var i = 0; i < parseInt(menu); i++) {
             newMenu.push({ item: `item` + ` ` + `${i + 1}`, description: '', idx: `${Date.now() + i}`, ingres: [] });
         };
-        setRestaurants(restaurants.concat(
-            {
-                restName: name.charAt(0).toUpperCase() + name.slice(1),
-                restCuisine: cuisine.charAt(0).toUpperCase() + cuisine.slice(1),
-                restMenu: newMenu,
-                restMenuNum: parseInt(menu),
-                restId: id
+//         setRestaurants(restaurants.concat(
+//             {
+//                 restName: name.charAt(0).toUpperCase() + name.slice(1),
+//                 restCuisine: cuisine.charAt(0).toUpperCase() + cuisine.slice(1),
+//                 restMenu: newMenu,
+//                 restMenuNum: parseInt(menu),
+//                 restId: id
 
-            }));
+//             }));
         
         fetch(process.env.REACT_APP_API_URL +"/api/restaurant", {
             method: "POST",
