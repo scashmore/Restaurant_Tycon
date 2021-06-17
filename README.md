@@ -34,8 +34,6 @@ Back End: https://github.com/scashmore/Tycon_Back
 
 ## Bug/Issue
 
-There is an issue with socket.io. For some reason, depending on the order in which the client windows are opened, something like ths happens: 
-
-![Bug](./assets/Bug.gif)
+There is an issue with socket.io. For some reason, depending on the order in which the client windows are opened.  *** Issue Resolved on 6/16 11:20 pm est"
 
 This is also interfering with other sockets. The only one that will work is when an object is created.
