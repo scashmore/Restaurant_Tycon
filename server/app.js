@@ -17,7 +17,8 @@ app.use(express.static(path.join(__dirname, "client", "build")))
 
 Socketio.on("connection", (socket) => {
     console.log("connection made")
-    global.socket = socket;
+    global.socket = socket;    
+    global.Socketio=Socketio
 });
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
